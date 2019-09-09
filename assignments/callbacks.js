@@ -107,7 +107,33 @@ console.log(contains('Cheese', items, containMessage));
 /* STRETCH PROBLEM */
 
 function removeDuplicates(array, cb) {
-  // removeDuplicates removes all duplicate values from the given array.
-  // Pass the duplicate free array to the callback function.
-  // Do not mutate the original array.
+	var duplicateFree = [];
+
+	for(i = 0; i < array.length; i++)
+	{
+		var found = false;
+
+		for(j = 0; j < duplicateFree.length; j++)
+		{
+			if(array[i] === duplicateFree[j])
+			{
+				found = true;
+				break;
+			}
+		}
+
+		if(!found)
+			duplicateFree.push(array[i]);
+	}
+
+	return cb(array, duplicateFree);			
 }
+
+function print(original, clean) {
+	console.log(original);
+	console.log(clean);
+}
+
+const dups = [1, 2, 1, 2, 2, 4, 3, 5, 4, 5, 1, 3, 2, 5, 6, 7];
+
+const noDups = removeDuplicates(dups, print);
