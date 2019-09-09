@@ -4,6 +4,28 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+let holiday_pay = function() {
+	let christmas_eve_hours = 8;
+	let christmas_day_hours = 8;
+	let labor_day_hours = 6;
+	let july_4th = 8;
+	let thankgiving = 4;
+	
+	let total = christmas_eve_hours + christmas_day_hours + labor_day_hours + july_4th + thankgiving;
+	
+	function display() {
+		console.log(`Your total holiday hours for this year are ${total}`);
+		console.log(`Your total holiday pay will be \$${pay}`);
+	}
+
+	let pay_rate = 17;
+	let pay = pay_rate * total;	
+
+	display();
+	return holiday_pay;
+}
+
+holiday_pay();
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
