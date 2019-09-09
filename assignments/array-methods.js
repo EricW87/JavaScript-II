@@ -58,28 +58,49 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+runners.forEach(function(element) {
+	let fn = element.first_name + " " + element.last_name;
+	fullNames.push(fn);
+})
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
 let firstNamesAllCaps = [];
+firstNamesAllCaps = runners.map(function(element) {
+	return element.first_name.toUpperCase();
+});
+
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
 let runnersLargeSizeShirt = [];
+runnersLargeSizeShirt = runners.filter(element => element.shirt_size === "L");
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
 let ticketPriceTotal = 0;
+ticketPriceTotal = runners.reduce(function(accumulator, element) {
+	return accumulator + element.donation;
+}, 0);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
-
+//Races who have over 200 dollars in donations need special recognition, put them in their own array.
+let mostDonations = [];
+mostDonations = runners.filter(element => element.donation >= 200);
+console.log(mostDonations);
 // Problem 2
-
+//Everyone gets a gold medal for participation. add element medal: gold to each participant
+runners.forEach(element => element.medal = 'gold');
+console.log(runners);
 // Problem 3
+//A generous benefactor wants to double the donations for everyone wearing XL shirts or bigger. Create a new array with these participants with their new donation totals.
+let xlRunners = runners.filter(element => ( element.shirt_size === "XL" || element.shirt_size === "2XL" || element.shirt_size == "3XL" ) );
+xlRunners.forEach(element => element.donation *= 2);
+console.log(xlRunners);
